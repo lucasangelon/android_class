@@ -6,8 +6,12 @@
     <string name="label_activity_basic_intent">Explicit Intent</string>
     <string name="label_activity_dynamic">Dynamic Activity</string>
     <string name="label_activity_list">List Activity</string>
+    <string name="label_activity_broadcast">Broadcast Receiver Activity</string>
     <string name="basic_intent">This is a new activity.</string>
     <string name="dynamic_activity_text">Not empty!</string>
+    <string name="broadcast_activity_text">Time:</string>
+    <string name="broadcast_activity_hint">Seconds for the timer</string>
+    <string name="broadcast_activity_button">Start Timer</string>
 
     <!-- Main Page Buttons -->
     <string name="button_basic_intent">Explicit Intent Example</string>

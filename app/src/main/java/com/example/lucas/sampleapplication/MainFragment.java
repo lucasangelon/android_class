@@ -58,6 +58,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // Broadcast Receiver button.
+        Button buttonBroadcastReceiver = (Button) view.findViewById(R.id.button_broadcast_receiver);
+        buttonBroadcastReceiver.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BroadcastActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Hardcoded List Button.
         Button buttonListFake = (Button) view.findViewById(R.id.button_list_fake);
         buttonListFake.setOnClickListener(new View.OnClickListener() {
