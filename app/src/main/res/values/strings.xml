@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Sample Application</string>
+
+    <!-- Activities -->
+    <string name="basic_intent">This is a new activity.</string>
+
+    <!-- Main Page Buttons -->
+    <string name="button_basic_intent">Intent Example</string>
 </resources>
