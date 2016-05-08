@@ -14,4 +14,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_extra_intent"
         android:text="@string/button_extra_intent"/>
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_broadcast_receiver"
+        android:text="@string/button_broadcast_receiver"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_list_fake"
+        android:text="@string/button_list_fake"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_list_web"
+        android:text="@string/button_list_web"/>
 </LinearLayout>

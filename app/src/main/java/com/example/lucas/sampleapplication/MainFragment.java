@@ -42,7 +42,7 @@ public class MainFragment extends Fragment {
          * text to the "DynamicActivity" which does not show any text if navigated to through the
          * "Empty Intent" button.
          */
-        Button buttonExtraIntent= (Button) view.findViewById(R.id.button_extra_intent);
+        Button buttonExtraIntent = (Button) view.findViewById(R.id.button_extra_intent);
         buttonExtraIntent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DynamicActivity.class);
@@ -54,6 +54,15 @@ public class MainFragment extends Fragment {
                  * it through getString(resource id).
                  */
                 intent.putExtra(EXTRA_TEXT, getString(R.string.dynamic_activity_text));
+                startActivity(intent);
+            }
+        });
+
+        // Hardcoded List Button.
+        Button buttonListFake = (Button) view.findViewById(R.id.button_list_fake);
+        buttonListFake.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListActivity.class);
                 startActivity(intent);
             }
         });

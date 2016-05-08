@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="games">
+        <item>Tales of Graces, 2009</item>
+        <item>Final Fantasy VI, 1994</item>
+        <item>Heavy Rain, 2010</item>
+        <item>Sonic Riders, 2006</item>
+        <item>Legend of Heroes: Trails in the Sky, 2004</item>
+        <item>Broken Age, 2014</item>
+        <item>Child of Light, 2014</item>
+        <item>Resident Evil, 1996</item>
+        <item>Magicka, 2011</item>
+        <item>Castle Crashers, 2008</item>
+    </string-array>
+</resources>
