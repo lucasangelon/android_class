@@ -6,4 +6,5 @@
 
     <!-- Main Page Buttons -->
     <string name="button_basic_intent">Intent Example</string>
+    <string name="button_toast">Create Toast</string>
 </resources>

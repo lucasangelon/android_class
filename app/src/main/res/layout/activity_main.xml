@@ -11,4 +11,11 @@
         android:text="@string/button_basic_intent"
         android:onClick="basicIntentClick"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/button_toast"
+        android:text="@string/button_toast"/>
+
 </LinearLayout>
