@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,8 +17,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".BasicIntentActivity">
+        <activity android:name=".BasicIntentActivity"
+            android:label="@string/label_activity_basic_intent"
+            android:parentActivityName=".MainActivity">
 
+        </activity>
+
+        <activity android:name=".DynamicActivity"
+            android:label="@string/label_activity_dynamic"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 

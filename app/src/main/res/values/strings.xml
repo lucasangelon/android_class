@@ -1,10 +1,17 @@
 <resources>
-    <string name="app_name">Sample Application</string>
+    <string name="app_name">Android Content Application</string>
 
     <!-- Activities -->
+    <string name="label_activity_main">Main Menu</string>
+    <string name="label_activity_basic_intent">Explicit Intent</string>
+    <string name="label_activity_dynamic">Dynamic Activity</string>
     <string name="basic_intent">This is a new activity.</string>
+    <string name="dynamic_activity_text">Not empty!</string>
 
     <!-- Main Page Buttons -->
-    <string name="button_basic_intent">Intent Example</string>
+    <string name="button_basic_intent">Explicit Intent Example</string>
     <string name="button_toast">Create Toast</string>
+    <string name="button_show_fragment">Show Fragment</string>
+    <string name="button_empty_intent">New Empty Activity</string>
+    <string name="button_extra_intent">Passing Data to the Empty Activity</string>
 </resources>
