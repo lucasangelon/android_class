@@ -7,11 +7,14 @@
     <string name="label_activity_dynamic">Dynamic Activity</string>
     <string name="label_activity_list">List Activity</string>
     <string name="label_activity_broadcast">Broadcast Receiver Activity</string>
+    <string name="label_activity_implicit">Implicit Intent</string>
+    <string name="label_activity_result">Intent Result</string>
     <string name="basic_intent">This is a new activity.</string>
     <string name="dynamic_activity_text">Not empty!</string>
     <string name="broadcast_activity_text">Time:</string>
     <string name="broadcast_activity_hint">Seconds for the timer</string>
     <string name="broadcast_activity_button">Start Timer</string>
+    <string name="implicit_activity_text">"Hello, world!"</string>
 
     <!-- Main Page Buttons -->
     <string name="button_basic_intent">Explicit Intent Example</string>
@@ -22,4 +25,8 @@
     <string name="button_broadcast_receiver">Broadcast Receiver</string>
     <string name="button_list_fake">List with Hardcoded Data</string>
     <string name="button_list_web">List with Data from the Internet</string>
+    <string name="button_list_database">List with Data from the Database</string>
+    <string name="button_implicit_intent">Implicit Intent Example</string>
+    <string name="button_result_intent">Intent Result Example</string>
+    <string name="button_implicit_start">Send Message</string>
 </resources>

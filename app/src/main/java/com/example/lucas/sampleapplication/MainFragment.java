@@ -3,7 +3,6 @@ package com.example.lucas.sampleapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +62,15 @@ public class MainFragment extends Fragment {
         buttonBroadcastReceiver.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), BroadcastActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Implicit Intent Button.
+        Button buttonImplicitIntent = (Button) view.findViewById(R.id.button_implicit_intent);
+        buttonImplicitIntent.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ImplicitActivity.class);
                 startActivity(intent);
             }
         });
