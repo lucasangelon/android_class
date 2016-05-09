@@ -69,4 +69,16 @@ public class ResultActivity extends AppCompatActivity {
             }
         }
     }
+
+    /* Note about this specific Permission
+     *
+     * According to the developer.android website's page used for this section, before Android
+     * 2.3, performing such a contact retrieval query would require a permission declaration for
+     * READ_CONTACTS. After this specific API (level 9), your application can get a temporary
+     * permission to read contacts when it returns you a result.
+     *
+     * The temporary permission is only applied to the specific contact requested, meaning you
+     * won't be able to query a contact other than the one specified by the Intent's URI unless
+     * the permission READ_CONTACTS is declared / requested.
+     */
 }
