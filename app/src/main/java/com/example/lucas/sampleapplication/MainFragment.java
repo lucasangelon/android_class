@@ -3,7 +3,6 @@ package com.example.lucas.sampleapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,11 +57,47 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // Broadcast Receiver button.
+        Button buttonBroadcastReceiver = (Button) view.findViewById(R.id.button_broadcast_receiver);
+        buttonBroadcastReceiver.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BroadcastActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Implicit Intent Button.
+        Button buttonImplicitIntent = (Button) view.findViewById(R.id.button_implicit_intent);
+        buttonImplicitIntent.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ImplicitActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Result Intent Button.
+        Button buttonResultIntent = (Button) view.findViewById(R.id.button_result_intent);
+        buttonResultIntent.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Hardcoded List Button.
         Button buttonListFake = (Button) view.findViewById(R.id.button_list_fake);
         buttonListFake.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Internal and External Storage Button.
+        Button buttonStorage = (Button) view.findViewById(R.id.button_storage);
+        buttonStorage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), StorageActivity.class);
                 startActivity(intent);
             }
         });

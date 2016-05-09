@@ -24,12 +24,36 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/button_implicit_intent"
+        android:text="@string/button_implicit_intent"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_result_intent"
+        android:text="@string/button_result_intent"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/button_list_fake"
         android:text="@string/button_list_fake"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/button_list_database"
+        android:text="@string/button_list_database"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/button_list_web"
         android:text="@string/button_list_web"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_storage"
+        android:text="@string/button_storage"/>
 </LinearLayout>
