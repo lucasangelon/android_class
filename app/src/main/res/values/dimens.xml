@@ -3,8 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Button Margins -->
+    <!-- Margins -->
     <dimen name="button_top_margin">16dp</dimen>
+    <dimen name="edit_text_top_margin">40dp</dimen>
 
     <!-- List View Items -->
     <dimen name="list_simple_margin">24dp</dimen>

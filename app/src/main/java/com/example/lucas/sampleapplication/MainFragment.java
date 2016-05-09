@@ -93,6 +93,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // Internal and External Storage Button.
+        Button buttonStorage = (Button) view.findViewById(R.id.button_storage);
+        buttonStorage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), StorageActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Return the view required by the fragment manager.
         return view;
     }

@@ -3,6 +3,7 @@
     package="com.example.lucas.sampleapplication">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -40,9 +41,13 @@
             android:name=".ImplicitActivity"
             android:label="@string/label_activity_implicit"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ResultActivity"
+        <activity
+            android:name=".ResultActivity"
             android:label="@string/label_activity_result"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".StorageActivity"
+            android:label="@string/label_activity_storage"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

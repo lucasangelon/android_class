@@ -9,11 +9,10 @@
     <string name="label_activity_broadcast">Broadcast Receiver Activity</string>
     <string name="label_activity_implicit">Implicit Intent</string>
     <string name="label_activity_result">Intent Result</string>
+    <string name="label_activity_storage">Storage Example</string>
     <string name="basic_intent">This is a new activity.</string>
     <string name="dynamic_activity_text">Not empty!</string>
     <string name="broadcast_activity_text">Time:</string>
-    <string name="broadcast_activity_hint">Seconds for the timer</string>
-    <string name="broadcast_activity_button">Start Timer</string>
     <string name="implicit_activity_text">"Hello, world!"</string>
 
     <!-- Main Page Buttons -->
@@ -28,6 +27,31 @@
     <string name="button_list_database">List with Data from the Database</string>
     <string name="button_implicit_intent">Implicit Intent Example</string>
     <string name="button_result_intent">Intent Result Example</string>
+    <string name="button_storage">Internal and External Storage</string>
+
+    <!-- Extra Buttons -->
+    <string name="broadcast_activity_button">Start Timer</string>
     <string name="button_implicit_start">Send Message</string>
     <string name="button_result_start">Pick a Contact</string>
+    <string name="button_storage_internal_create">Create Internal File</string>
+    <string name="button_storage_internal_read">Read Internal File</string>
+    <string name="button_storage_external_create">Create External File</string>
+    <string name="button_storage_external_read">Read External File</string>
+
+    <!-- Hints -->
+    <string name="broadcast_activity_hint">Seconds for the timer</string>
+    <string name="storage_internal_hint">Enter text to be entered into the file.</string>
+    <string name="storage_hint_text">Text will appear here.</string>
+    <string name="storage_external_hint">Enter text for the External file.</string>
+
+    <!-- Errors -->
+    <string name="storage_text_error">An error has occurred,
+        text defaulted to "Hello, world!"</string>
+    <string name="storage_file_error">An error has occurred with the file, process aborted.</string>
+    <string name="storage_io_error">An error has occurred, process aborted.</string>
+    <string name="storage_empty">The text was empty and has been defaulted to "Hello, world!"</string>
+
+    <!-- Notifications -->
+    <string name="storage_internal_success">Internal file created successfully!</string>
+    <string name="storage_external_success">External file created successfully!</string>
 </resources>
