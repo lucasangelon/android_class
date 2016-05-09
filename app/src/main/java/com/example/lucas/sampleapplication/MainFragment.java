@@ -1,8 +1,10 @@
 package com.example.lucas.sampleapplication;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,7 +104,19 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // Disable database / web service buttons in the meanwhile.
+        Button buttonListDatabase = (Button) view.findViewById(R.id.button_list_database);
+        disableButton(buttonListDatabase);
+        Button buttonListWeb = (Button) view.findViewById(R.id.button_list_web);
+        disableButton(buttonListWeb);
+
         // Return the view required by the fragment manager.
         return view;
+    }
+
+    private void disableButton(View v) {
+        if (v instanceof Button) {
+            v.setEnabled(false);
+        }
     }
 }
