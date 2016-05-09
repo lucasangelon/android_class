@@ -29,4 +29,5 @@
     <string name="button_implicit_intent">Implicit Intent Example</string>
     <string name="button_result_intent">Intent Result Example</string>
     <string name="button_implicit_start">Send Message</string>
+    <string name="button_result_start">Pick a Contact</string>
 </resources>

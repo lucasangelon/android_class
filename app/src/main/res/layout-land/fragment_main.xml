@@ -32,16 +32,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/button_broadcast_receiver"
-            android:text="@string/button_broadcast_receiver"/>
+            android:id="@+id/button_implicit_intent"
+            android:text="@string/button_implicit_intent"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/button_list_fake"
-            android:text="@string/button_list_fake"/>
-
+            android:id="@+id/button_result_intent"
+            android:text="@string/button_result_intent"/>
     </LinearLayout>
 
     <LinearLayout
@@ -53,15 +52,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/button_implicit_intent"
-            android:text="@string/button_implicit_intent"/>
+            android:id="@+id/button_broadcast_receiver"
+            android:text="@string/button_broadcast_receiver"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/button_result_intent"
-            android:text="@string/button_result_intent"/>
+            android:id="@+id/button_list_fake"
+            android:text="@string/button_list_fake"/>
+
     </LinearLayout>
 
     <LinearLayout

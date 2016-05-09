@@ -75,6 +75,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        // Result Intent Button.
+        Button buttonResultIntent = (Button) view.findViewById(R.id.button_result_intent);
+        buttonResultIntent.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Hardcoded List Button.
         Button buttonListFake = (Button) view.findViewById(R.id.button_list_fake);
         buttonListFake.setOnClickListener(new View.OnClickListener() {

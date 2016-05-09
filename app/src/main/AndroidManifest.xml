@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lucas.sampleapplication">
 
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -20,25 +20,29 @@
         <activity
             android:name=".BasicIntentActivity"
             android:label="@string/label_activity_basic_intent"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DynamicActivity"
             android:label="@string/label_activity_dynamic"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ListActivity"
             android:label="@string/label_activity_list"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".BroadcastActivity"
             android:label="@string/label_activity_broadcast"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
 
-        <receiver android:name=".helpers.BroadcastHelper"/>
+        <receiver android:name=".helpers.BroadcastHelper" />
 
-        <activity android:name=".ImplicitActivity"
+        <activity
+            android:name=".ImplicitActivity"
             android:label="@string/label_activity_implicit"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ResultActivity"
+            android:label="@string/label_activity_result"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
