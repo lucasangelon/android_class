@@ -10,6 +10,7 @@
     <string name="label_activity_implicit">Implicit Intent</string>
     <string name="label_activity_result">Intent Result</string>
     <string name="label_activity_storage">Storage Example</string>
+    <string name="label_activity_listview">ListView with real Data</string>
     <string name="basic_intent">This is a new activity.</string>
     <string name="dynamic_activity_text">Not empty!</string>
     <string name="broadcast_activity_text">Time:</string>

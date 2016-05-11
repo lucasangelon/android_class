@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lucas.sampleapplication">
 
+    <!-- Required for the Broadcast Receiver example -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- Required for the External Storage example -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Required for the Web Connection example -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -45,8 +51,12 @@
             android:name=".ResultActivity"
             android:label="@string/label_activity_result"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".StorageActivity"
+        <activity
+            android:name=".StorageActivity"
             android:label="@string/label_activity_storage"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ListViewActivity"
+            android:label="@string/label_activity_listview"
             android:parentActivityName=".MainActivity"/>
     </application>
 

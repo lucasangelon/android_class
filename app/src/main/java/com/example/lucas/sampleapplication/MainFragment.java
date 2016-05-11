@@ -107,8 +107,16 @@ public class MainFragment extends Fragment {
         // Disable database / web service buttons in the meanwhile.
         Button buttonListDatabase = (Button) view.findViewById(R.id.button_list_database);
         disableButton(buttonListDatabase);
+
+
         Button buttonListWeb = (Button) view.findViewById(R.id.button_list_web);
-        disableButton(buttonListWeb);
+        buttonListWeb.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListViewActivity.class);
+                intent.putExtra("LIST_TYPE", "web");
+                startActivity(intent);
+            }
+        });
 
         // Return the view required by the fragment manager.
         return view;
