@@ -11,6 +11,7 @@
     <string name="label_activity_result">Intent Result</string>
     <string name="label_activity_storage">Storage Example</string>
     <string name="label_activity_listview">ListView with real Data</string>
+    <string name="label_activity_database">Database Actions</string>
     <string name="basic_intent">This is a new activity.</string>
     <string name="dynamic_activity_text">Not empty!</string>
     <string name="broadcast_activity_text">Time:</string>
@@ -38,6 +39,8 @@
     <string name="button_storage_internal_read">Read Internal File</string>
     <string name="button_storage_external_create">Create External File</string>
     <string name="button_storage_external_read">Read External File</string>
+    <string name="button_open_database">Database Options</string>
+    <string name="button_refresh_database">Refresh List</string>
 
     <!-- Hints -->
     <string name="broadcast_activity_hint">Seconds for the timer</string>
@@ -55,4 +58,18 @@
     <!-- Notifications -->
     <string name="storage_internal_success">Internal file created successfully!</string>
     <string name="storage_external_success">External file created successfully!</string>
+
+    <!-- Database Extras -->
+    <string name="database_day_add_hint">Day</string>
+    <string name="database_type_add_hint">Type</string>
+    <string name="database_max_add_hint">Max</string>
+    <string name="database_min_add_hint">Min</string>
+    <string name="database_id_delete_hint">Row ID</string>
+    <string name="database_day_update_hint">Day</string>
+    <string name="database_id_update_hint">Row ID</string>
+    <string name="button_database_add">Add to Database</string>
+    <string name="button_database_delete">Delete from Database</string>
+    <string name="button_database_update">Update Row</string>
+    <string name="button_database_seed">Seed Database (5 entries)</string>
+    <string name="button_database_wipe">Wipe Database</string>
 </resources>

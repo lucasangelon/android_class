@@ -1,5 +1,9 @@
 package com.example.lucas.sampleapplication;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,7 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.lucas.sampleapplication.helpers.DatabaseContract;
+import com.example.lucas.sampleapplication.helpers.DatabaseHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,6 +86,20 @@ public class ListViewFragment extends Fragment {
         // Check the fragment required based on the type given and start it.
         startFragment(type);
 
+        // Starting the buttons for the database mode.
+        Button buttonOpenDatabase = (Button) view.findViewById(R.id.button_open_database);
+
+        if (type.equals("WEB")) {
+            disableButton(buttonOpenDatabase);
+        } else {
+            buttonOpenDatabase.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), DatabaseActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -84,14 +107,85 @@ public class ListViewFragment extends Fragment {
     private void startFragment(String type) {
 
         // For the web service.
-        if (type.equals("web")) {
+        if (type.equals("WEB")) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
 
             // This number is the City ID for Perth, WA (Australia) in the OpenWeatherMap API.
             weatherTask.execute("2063523");
-        } else if (type.equals("database")) {
-            // TODO: Database Way
+        } else if (type.equals("DATABASE")) {
+            String[] listContent = selectData();
+
+            mForecastAdapter.clear();
+
+            for (String weather : listContent) {
+                mForecastAdapter.add(weather);
+            }
         }
+    }
+
+    private void disableButton(View v) {
+        if (v instanceof Button) {
+            v.setEnabled(false);
+        }
+    }
+
+    private String[] selectData() {
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            String[] projection = {
+                    DatabaseContract.Weather.COLUMN_NAME_DAY,
+                    DatabaseContract.Weather.COLUMN_NAME_TYPE,
+                    DatabaseContract.Weather.COLUMN_NAME_MAX,
+                    DatabaseContract.Weather.COLUMN_NAME_MIN
+            };
+
+            Cursor c = db.query(DatabaseContract.Weather.TABLE_NAME, projection, null, null, null,
+                    null, null);
+
+            ArrayList<String> listContent = new ArrayList<String>();
+
+            if (c.moveToFirst()) {
+                do {
+                    String data = c.getString(c.getColumnIndexOrThrow(
+                                            DatabaseContract.Weather.COLUMN_NAME_DAY));
+                    data += " - " + c.getString(c.getColumnIndexOrThrow(
+                                            DatabaseContract.Weather.COLUMN_NAME_TYPE));
+                    data += " - " + c.getDouble(c.getColumnIndexOrThrow(
+                                            DatabaseContract.Weather.COLUMN_NAME_MAX));
+                    data += " / " + c.getDouble(c.getColumnIndexOrThrow(
+                                            DatabaseContract.Weather.COLUMN_NAME_MIN));
+
+                    listContent.add(data);
+                } while(c.moveToNext());
+            }
+
+            c.close();
+
+            int arraySize = listContent.size();
+            String[] weatherData = new String[arraySize];
+
+            for (int i = 0; i < arraySize; i++) {
+                weatherData[i] = listContent.get(i);
+            }
+
+            db.setTransactionSuccessful();
+
+            return weatherData;
+        } catch (SQLException e) {
+            Toast.makeText(getActivity(), "Unable to retrieve rows, error: " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        String[] error = { "Unable to retrieve data." };
+
+        return error;
     }
 
     /* Web Services

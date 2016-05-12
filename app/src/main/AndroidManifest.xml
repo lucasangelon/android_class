@@ -55,9 +55,14 @@
             android:name=".StorageActivity"
             android:label="@string/label_activity_storage"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ListViewActivity"
+        <activity
+            android:name=".ListViewActivity"
             android:label="@string/label_activity_listview"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DatabaseActivity"
+            android:label="@string/label_activity_database"
+            android:parentActivityName=".ListViewActivity"/>
     </application>
 
 </manifest>
