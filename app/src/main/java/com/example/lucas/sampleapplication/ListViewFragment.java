@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.lucas.sampleapplication.helpers.DatabaseContract;
 import com.example.lucas.sampleapplication.helpers.DatabaseHelper;
@@ -113,29 +112,45 @@ public class ListViewFragment extends Fragment {
             // This number is the City ID for Perth, WA (Australia) in the OpenWeatherMap API.
             weatherTask.execute("2063523");
         } else if (type.equals("DATABASE")) {
+
+            // Retrieve the data.
             String[] listContent = selectData();
 
             mForecastAdapter.clear();
 
+            // Add it to the adapter.
             for (String weather : listContent) {
                 mForecastAdapter.add(weather);
             }
         }
     }
 
+    // Disables a button, used for the "WEB" side of the page.
     private void disableButton(View v) {
         if (v instanceof Button) {
             v.setEnabled(false);
         }
     }
 
+    /* C"R"UD
+     *
+     * The "Read" action for the database (or "SELECT"). This method retrieves the data from the
+     * database in the format of a String array to be used to populate the list adapter.
+     */
     private String[] selectData() {
+
+        // Instantiates the database.
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
+        // Try-Catch-Finally block to ensure the database exceptions are caught and the resources
+        // are closed by the end.
         try {
+
+            // Starting a transaction (process) with the database.
             db.beginTransaction();
 
+            // The columns we are going to use from the table.
             String[] projection = {
                     DatabaseContract.Weather.COLUMN_NAME_DAY,
                     DatabaseContract.Weather.COLUMN_NAME_TYPE,
@@ -143,11 +158,17 @@ public class ListViewFragment extends Fragment {
                     DatabaseContract.Weather.COLUMN_NAME_MIN
             };
 
+            // A cursor is required to read data from a table, the parameters add complexity to the
+            // query and because we have a simple "SELECT day, type, max, min FROM weather", we do
+            // not need to add any of the sort / where parameters.
             Cursor c = db.query(DatabaseContract.Weather.TABLE_NAME, projection, null, null, null,
                     null, null);
 
-            ArrayList<String> listContent = new ArrayList<String>();
+            // Defining an array with the number of items from the cursor.
+            String[] weatherData = new String[c.getCount()];
+            int i = 0;
 
+            // Reading data from the cursor.
             if (c.moveToFirst()) {
                 do {
                     String data = c.getString(c.getColumnIndexOrThrow(
@@ -159,33 +180,31 @@ public class ListViewFragment extends Fragment {
                     data += " / " + c.getDouble(c.getColumnIndexOrThrow(
                                             DatabaseContract.Weather.COLUMN_NAME_MIN));
 
-                    listContent.add(data);
+                    // And adding it to the array.
+                    weatherData[i] = data;
+                    i++;
                 } while(c.moveToNext());
             }
 
+            // Closing the cursor.
             c.close();
 
-            int arraySize = listContent.size();
-            String[] weatherData = new String[arraySize];
-
-            for (int i = 0; i < arraySize; i++) {
-                weatherData[i] = listContent.get(i);
-            }
-
+            // Signaling that the transaction was completed successfully.
             db.setTransactionSuccessful();
 
+            // Returning the array.
             return weatherData;
         } catch (SQLException e) {
-            Toast.makeText(getActivity(), "Unable to retrieve rows, error: " + e.getMessage(),
-                    Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "Unable to retrieve rows, error: " + e.getMessage());
         } finally {
+
+            // Ending the transaction and closing the database to free resources.
             db.endTransaction();
             db.close();
         }
 
-        String[] error = { "Unable to retrieve data." };
-
-        return error;
+        // If something went wrong, show this to the user in the list.
+        return new String[]{ "Unable to retrieve data." };
     }
 
     /* Web Services

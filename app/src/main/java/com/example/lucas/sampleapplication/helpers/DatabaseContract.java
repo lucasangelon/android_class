@@ -8,10 +8,16 @@ import android.provider.BaseColumns;
 /**
  * Created by lucas on 12/05/2016.
  */
+
+// Based on: http://developer.android.com/guide/topics/providers/content-provider-creating.html
+// http://developer.android.com/guide/topics/data/data-storage.html#db
+// http://developer.android.com/training/basics/data-storage/databases.html
 public class DatabaseContract {
 
+    // Empty constructor in case someone tries to instantiate this.
     public DatabaseContract() {}
 
+    // Defining the Weather table alongside all the columns and the base create query required.
     public static abstract class Weather implements BaseColumns {
         public static final String TABLE_NAME = "weather";
         public static final String COLUMN_NAME_ID = "id";

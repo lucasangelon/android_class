@@ -7,12 +7,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by lucas on 12/05/2016.
  */
+
+// Based on: http://developer.android.com/guide/topics/providers/content-provider-creating.html
+// http://developer.android.com/guide/topics/data/data-storage.html#db
+// http://developer.android.com/training/basics/data-storage/databases.html
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Defining database variables.
     private static final String DATABASE_NAME = "android_class.db";
     private static final int DATABASE_VERSION = 1;
-    private static final DatabaseContract dbc =  new DatabaseContract();
 
+    // Constructor for this helper.
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

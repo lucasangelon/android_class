@@ -13,8 +13,12 @@ import android.widget.Toast;
 import com.example.lucas.sampleapplication.helpers.DatabaseContract;
 import com.example.lucas.sampleapplication.helpers.DatabaseHelper;
 
+// Based on: http://developer.android.com/guide/topics/providers/content-provider-creating.html
+// http://developer.android.com/guide/topics/data/data-storage.html#db
+// http://developer.android.com/training/basics/data-storage/databases.html
 public class DatabaseActivity extends AppCompatActivity {
 
+    // Defining the helper we are going to use throughout the class.
     private DatabaseHelper mDbHelper;
 
     @Override
@@ -22,11 +26,18 @@ public class DatabaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
 
+        // Instantiating the helper.
         mDbHelper = new DatabaseHelper(this);
     }
 
+    /* "C"RUD.
+     *
+     * The Create action for the database. This method allows the user to enter a row of data to
+     * our SQLite database.
+     */
     public void insertData(View v) {
 
+        // Checking all the EditTexts.
         EditText day = (EditText) findViewById(R.id.database_add_day);
         EditText type = (EditText) findViewById(R.id.database_add_type);
         EditText max = (EditText) findViewById(R.id.database_add_max);
@@ -40,6 +51,7 @@ public class DatabaseActivity extends AppCompatActivity {
             String maxText = max.getText().toString();
             String minText = min.getText().toString();
 
+            // Ensuring nothing is null, empty or in the wrong data type.
             if (dayText.equals("")) {
                 dayText = "Sunday";
             }
@@ -60,23 +72,28 @@ public class DatabaseActivity extends AppCompatActivity {
                 minDouble = Double.parseDouble(minText);
             }
 
+            // Retrieving the Writable database with which we are going to add the data.
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
             try {
                 db.beginTransaction();
 
+                // Creating a new ContentValues to hold the different parts of the data and to add
+                // to the correct columns upon insertion.
                 ContentValues values = new ContentValues();
                 values.put(DatabaseContract.Weather.COLUMN_NAME_DAY, dayText);
                 values.put(DatabaseContract.Weather.COLUMN_NAME_TYPE, typeText);
                 values.put(DatabaseContract.Weather.COLUMN_NAME_MAX, maxDouble);
                 values.put(DatabaseContract.Weather.COLUMN_NAME_MIN, minDouble);
 
+                // This newRowId will obtain the row number that our data was inserted into.
                 long newRowId;
                 newRowId = db.insert(DatabaseContract.Weather.TABLE_NAME,
                         DatabaseContract.Weather.COLUMN_NAME_ID, values);
 
                 db.setTransactionSuccessful();
 
+                // Notify the user of the successful action.
                 Toast.makeText(this, "Added row: " + newRowId, Toast.LENGTH_SHORT).show();
             } catch (SQLException e) {
                 Toast.makeText(this, "Unable to add row, error: " + e.getMessage(),
@@ -85,6 +102,9 @@ public class DatabaseActivity extends AppCompatActivity {
                 db.endTransaction();
                 db.close();
 
+                // Clear up the text inside the views. This iteration is useful when you have many
+                // text fields to clear and don't want to instantiate each and every one of them to
+                // remove the text inside them.
                 ViewGroup linearLayout = (ViewGroup) findViewById(R.id.database_add_container);
 
                 if (linearLayout != null) {
@@ -103,7 +123,13 @@ public class DatabaseActivity extends AppCompatActivity {
         }
     }
 
+    /* CRU"D"
+     *
+     * The "Delete" action for our database. This allows the user to delete a row through its ID.
+     */
     public void deleteData(View v) {
+
+        // Retrieving the ID.
         EditText editText = (EditText) findViewById(R.id.database_delete_id);
 
         if (editText != null) {
@@ -111,6 +137,7 @@ public class DatabaseActivity extends AppCompatActivity {
                 Toast.makeText(this, "Add an ID to be deleted.", Toast.LENGTH_SHORT).show();
             } else {
 
+                // Ensuring it is an integer.
                 if (isInteger(editText.getText().toString())) {
                     SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -119,11 +146,14 @@ public class DatabaseActivity extends AppCompatActivity {
 
                         Integer rowId = Integer.parseInt(editText.getText().toString());
 
+                        // Adding the "WHERE" clause to the action:
+                        // Column "ID" and data "rowID".
                         String selection = DatabaseContract.Weather.COLUMN_NAME_ID + " LIKE ?";
                         String[] selectionArgs = {
                                 String.valueOf(rowId)
                         };
 
+                        // Execute the delete action.
                         db.delete(DatabaseContract.Weather.TABLE_NAME, selection, selectionArgs);
                         db.setTransactionSuccessful();
 
@@ -135,6 +165,7 @@ public class DatabaseActivity extends AppCompatActivity {
                         db.endTransaction();
                         db.close();
 
+                        // Reset the text in the view.
                         editText.setText("");
                     }
 
@@ -145,12 +176,18 @@ public class DatabaseActivity extends AppCompatActivity {
         }
     }
 
+    /* CR"U"D
+     *
+     * The "Update" action for our database. This allows the user to update a record in the table.
+     * For the purpose of this tutorial, only the "day" column is going to be editable.
+     */
     public void updateData(View v) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         try {
             db.beginTransaction();
 
+            // Retrieving the text from the UI.
             EditText editText = (EditText) findViewById(R.id.database_update_day);
             String text = "";
 
@@ -160,6 +197,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
             if (editText != null && editTextId != null) {
 
+                // Ensuring the text is available, not null, not empty and in the correct data type.
                 text = editText.getText().toString();
                 id = editTextId.getText().toString();
 
@@ -181,12 +219,15 @@ public class DatabaseActivity extends AppCompatActivity {
                         "Day defaulted to \"Sunday\"", Toast.LENGTH_SHORT).show();
             }
 
+            // Creating a ContentValues variable to be used on the update process.
             ContentValues values = new ContentValues();
             values.put(DatabaseContract.Weather.COLUMN_NAME_DAY, text);
 
+            // Adding the "WHERE" clause to update a single row.
             String selection = DatabaseContract.Weather.COLUMN_NAME_ID + " LIKE ?";
             String[] selectionArgs = { String.valueOf(idInteger) };
 
+            // Executing the update action.
             int count = db.update(
                     DatabaseContract.Weather.TABLE_NAME,
                     values,
@@ -195,6 +236,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
             db.setTransactionSuccessful();
 
+            // Clearing the text views upon the successful completion of the action.
             if (editText != null && editTextId != null) {
                 editText.setText("");
                 editTextId.setText("");
@@ -211,10 +253,15 @@ public class DatabaseActivity extends AppCompatActivity {
         }
     }
 
+    // This method allows the user to add a few records through a single button click.
     public void seedData(View v) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         try {
+
+            // Using raw SQL to demonstrate another way to insert data.
+            // Note the "null" values are used for the ID primary key which was added with the
+            // autoincrement attribute.
             String[] insertSql = {
                     "INSERT INTO weather VALUES (null, 'Monday', 'Clear', 28, 10);",
                     "INSERT INTO weather VALUES (null, 'Tuesday', 'Sunny', 31, 14);",
@@ -225,6 +272,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
             db.beginTransaction();
 
+            // Executing the required queries.
             for (int i = 0; i < 5; i++) {
                 db.execSQL(insertSql[i]);
             }
@@ -241,6 +289,7 @@ public class DatabaseActivity extends AppCompatActivity {
         }
     }
 
+    // Removes all the data from the database.
     public void wipeData(View v) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -263,6 +312,7 @@ public class DatabaseActivity extends AppCompatActivity {
         }
     }
 
+    // Returns true if the parameter is a double.
     private boolean isDouble(String s) {
         try {
             Double.parseDouble(s);
@@ -275,6 +325,7 @@ public class DatabaseActivity extends AppCompatActivity {
         return true;
     }
 
+    // Returns true if the parameter is an integer.
     private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
